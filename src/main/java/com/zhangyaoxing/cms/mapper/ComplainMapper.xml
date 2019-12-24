@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhangyaoxing.cms.mapper.ComplainMapper">
+	<insert id="inserts">
+		insert into
+		cms_complain(content,userid,created,articleid,picurl,url,typename)
+		values(#{content},#{user_id},now(),#{articleId},#{picurl},#{url},#{typename})
+	</insert>
+	
+	<resultMap type="com.zhangyaoxing.cms.entity.Complain" id="complainResultMap">
+		<id column="id" property="id" />
+		<result column="content" property="content" />
+		<result column="created" property="created" />
+		<result column="typename" property="typename" />
+		<result column="user_id" property="user_id" />
+		<result column="picurl" property="picurl" />
+		<result column="url" property="url" />
+		<result column="articleId" property="articleId" />
+		
+		<association property="user" javaType="com.zhangyaoxing.cms.entity.User"
+			select="com.zhangyaoxing.cms.mapper.UserMapper.selectUser"
+			column="user_id"></association>
+		<association property="article" javaType="com.zhangyaoxing.cms.entity.Article"
+			select="com.zhangyaoxing.cms.mapper.ArticleMapper.selectByPrimaryKey"
+			column="articleId"></association>
+	</resultMap>
+	
+	<select id="selects" resultMap="complainResultMap">
+		SELECT b.*,a.complain_num FROM cms_article a LEFT JOIN cms_complain b ON a.id=b.articleid
+		<where>
+			<if test="typename!=null and typename!=''">
+				b.typename=#{typename}
+
+			</if>
+			<if test="startNum!=null">
+				and a.complain_num>=#{startNum}
+
+			</if>
+
+			<if test="endNum!=null">
+				and a.complain_num &lt;=#{endNum}
+
+			</if>
+
+			<if test="startTime!=null and startTime!=''">
+				and b.created>=#{startTime}
+
+			</if>
+
+			<if test="endTime!=null and endTime!=''">
+				and b.created &lt;=#{endTime}
+
+			</if>
+
+		</where>
+         <!--  
+         <if test="(orderName!=null and orderName!='') and orderMethod!=null and  orderName!=''">
+          order by ${orderName} ${orderMethod}
+        
+         </if> -->
+	</select>
+</mapper>
