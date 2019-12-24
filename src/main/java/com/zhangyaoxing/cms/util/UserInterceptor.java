@@ -1,5 +1,8 @@
 package com.zhangyaoxing.cms.util;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -39,15 +42,16 @@ public class UserInterceptor extends HandlerInterceptorAdapter {//继承 Handler
 	private UserMapper userMapper;
 
 	
-	private boolean rememberAutoLogin(HttpServletRequest request,HttpSession session) {
+	private boolean rememberAutoLogin(HttpServletRequest request,HttpSession session) throws UnsupportedEncodingException {
 		//从cookie获取账户密码
 		Cookie cokUsername = CookieUtil.getCookieByName(request, "username");
 		Cookie cokPassword = CookieUtil.getCookieByName(request, "password");
 		// 从cookie获取用户名和密码
 		if (null != cokUsername && null != cokPassword && null != cokUsername.getValue()
 				&& null != cokPassword.getValue()) {
-			String username = cokUsername.getValue();
-			String password = cokPassword.getValue();
+			
+			String username =URLDecoder.decode(cokUsername.getValue(),"UTF-8");
+			String password = URLDecoder.decode(cokPassword.getValue(),"UTF-8");
 			// 从数据库获取用户名和密码并和cookie的比较。若一直则返回true
 			User user2 = new User();
 			user2.setUsername(username);
