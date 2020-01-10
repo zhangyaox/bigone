@@ -10,7 +10,12 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
 
-
+	<!-- 加载redis.xml配置文件 -->
+	<import resource="classpath:redis.xml"/>
+	
+	<!-- 加载consumer.xml配置文件 -->
+	<import resource="classpath:consumer.xml"/>
+	
 	<!-- 1、注解扫描器 -->
 	<context:component-scan base-package="com.zhangyaoxing.cms" >
 		<!-- 排除要要扫描的controller -->

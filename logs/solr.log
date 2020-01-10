@@ -1,0 +1,177 @@
+INFO  - 2020-01-09 09:18:10.884; org.springframework.web.context.ContextLoader; Root WebApplicationContext: initialization started
+INFO  - 2020-01-09 09:18:11.758; org.apache.kafka.common.config.AbstractConfig; ConsumerConfig values: 
+	auto.commit.interval.ms = 5000
+	auto.offset.reset = latest
+	bootstrap.servers = [192.168.229.129:9092]
+	check.crcs = true
+	client.id = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = true
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = test-consumer-group
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.mechanism = GSSAPI
+	security.protocol = PLAINTEXT
+	send.buffer.bytes = 131072
+	session.timeout.ms = 15000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.1, TLSv1]
+	ssl.endpoint.identification.algorithm = https
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLS
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+
+INFO  - 2020-01-09 09:18:11.816; org.apache.kafka.common.utils.AppInfoParser$AppInfo; Kafka version : 2.0.0
+INFO  - 2020-01-09 09:18:11.817; org.apache.kafka.common.utils.AppInfoParser$AppInfo; Kafka commitId : 3402a8361b734732
+INFO  - 2020-01-09 09:18:11.822; org.springframework.scheduling.concurrent.ExecutorConfigurationSupport; Initializing ExecutorService
+INFO  - 2020-01-09 09:18:12.285; org.springframework.web.context.ContextLoader; Root WebApplicationContext initialized in 1395 ms
+INFO  - 2020-01-09 09:18:12.369; org.springframework.web.servlet.FrameworkServlet; Initializing Servlet 'springDispatcherServlet'
+INFO  - 2020-01-09 09:18:12.625; org.hibernate.validator.internal.util.Version; HV000001: Hibernate Validator 6.0.10.Final
+INFO  - 2020-01-09 09:18:13.068; org.springframework.web.servlet.FrameworkServlet; Completed initialization in 699 ms
+WARN  - 2020-01-09 09:18:13.956; org.apache.kafka.clients.NetworkClient; [Consumer clientId=consumer-1, groupId=test-consumer-group] Connection to node -1 could not be established. Broker may not be available.
+WARN  - 2020-01-09 09:18:16.022; org.apache.kafka.clients.NetworkClient; [Consumer clientId=consumer-1, groupId=test-consumer-group] Connection to node -1 could not be established. Broker may not be available.
+WARN  - 2020-01-09 09:18:18.180; org.apache.kafka.clients.NetworkClient; [Consumer clientId=consumer-1, groupId=test-consumer-group] Connection to node -1 could not be established. Broker may not be available.
+WARN  - 2020-01-09 09:18:20.389; org.apache.kafka.clients.NetworkClient; [Consumer clientId=consumer-1, groupId=test-consumer-group] Connection to node -1 could not be established. Broker may not be available.
+WARN  - 2020-01-09 09:18:22.902; org.apache.kafka.clients.NetworkClient; [Consumer clientId=consumer-1, groupId=test-consumer-group] Connection to node -1 could not be established. Broker may not be available.
+WARN  - 2020-01-09 09:18:25.616; org.apache.kafka.clients.NetworkClient; [Consumer clientId=consumer-1, groupId=test-consumer-group] Connection to node -1 could not be established. Broker may not be available.
+WARN  - 2020-01-09 09:18:28.633; org.apache.kafka.clients.NetworkClient; [Consumer clientId=consumer-1, groupId=test-consumer-group] Connection to node -1 could not be established. Broker may not be available.
+WARN  - 2020-01-09 09:18:31.554; org.apache.kafka.clients.NetworkClient; [Consumer clientId=consumer-1, groupId=test-consumer-group] Connection to node -1 could not be established. Broker may not be available.
+WARN  - 2020-01-09 09:18:34.623; org.apache.kafka.clients.NetworkClient; [Consumer clientId=consumer-1, groupId=test-consumer-group] Connection to node -1 could not be established. Broker may not be available.
+WARN  - 2020-01-09 09:18:37.739; org.apache.kafka.clients.NetworkClient; [Consumer clientId=consumer-1, groupId=test-consumer-group] Connection to node -1 could not be established. Broker may not be available.
+WARN  - 2020-01-09 09:18:40.806; org.apache.kafka.clients.NetworkClient; [Consumer clientId=consumer-1, groupId=test-consumer-group] Connection to node -1 could not be established. Broker may not be available.
+WARN  - 2020-01-09 09:18:43.921; org.apache.kafka.clients.NetworkClient; [Consumer clientId=consumer-1, groupId=test-consumer-group] Connection to node -1 could not be established. Broker may not be available.
+WARN  - 2020-01-09 09:18:47.040; org.apache.kafka.clients.NetworkClient; [Consumer clientId=consumer-1, groupId=test-consumer-group] Connection to node -1 could not be established. Broker may not be available.
+WARN  - 2020-01-09 09:18:49.955; org.apache.kafka.clients.NetworkClient; [Consumer clientId=consumer-1, groupId=test-consumer-group] Connection to node -1 could not be established. Broker may not be available.
+WARN  - 2020-01-09 09:18:53.022; org.apache.kafka.clients.NetworkClient; [Consumer clientId=consumer-1, groupId=test-consumer-group] Connection to node -1 could not be established. Broker may not be available.
+WARN  - 2020-01-09 09:18:56.137; org.apache.kafka.clients.NetworkClient; [Consumer clientId=consumer-1, groupId=test-consumer-group] Connection to node -1 could not be established. Broker may not be available.
+WARN  - 2020-01-09 09:18:59.005; org.apache.kafka.clients.NetworkClient; [Consumer clientId=consumer-1, groupId=test-consumer-group] Connection to node -1 could not be established. Broker may not be available.
+WARN  - 2020-01-09 09:19:01.969; org.apache.kafka.clients.NetworkClient; [Consumer clientId=consumer-1, groupId=test-consumer-group] Connection to node -1 could not be established. Broker may not be available.
+WARN  - 2020-01-09 09:19:04.990; org.apache.kafka.clients.NetworkClient; [Consumer clientId=consumer-1, groupId=test-consumer-group] Connection to node -1 could not be established. Broker may not be available.
+WARN  - 2020-01-09 09:19:08.056; org.apache.kafka.clients.NetworkClient; [Consumer clientId=consumer-1, groupId=test-consumer-group] Connection to node -1 could not be established. Broker may not be available.
+INFO  - 2020-01-09 09:19:27.976; org.springframework.web.context.ContextLoader; Root WebApplicationContext: initialization started
+INFO  - 2020-01-09 09:19:28.814; org.apache.kafka.common.config.AbstractConfig; ConsumerConfig values: 
+	auto.commit.interval.ms = 5000
+	auto.offset.reset = latest
+	bootstrap.servers = [192.168.229.129:9092]
+	check.crcs = true
+	client.id = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = true
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = test-consumer-group
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.mechanism = GSSAPI
+	security.protocol = PLAINTEXT
+	send.buffer.bytes = 131072
+	session.timeout.ms = 15000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.1, TLSv1]
+	ssl.endpoint.identification.algorithm = https
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLS
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+
+INFO  - 2020-01-09 09:19:28.984; org.apache.kafka.common.utils.AppInfoParser$AppInfo; Kafka version : 2.0.0
+INFO  - 2020-01-09 09:19:28.984; org.apache.kafka.common.utils.AppInfoParser$AppInfo; Kafka commitId : 3402a8361b734732
+INFO  - 2020-01-09 09:19:28.989; org.springframework.scheduling.concurrent.ExecutorConfigurationSupport; Initializing ExecutorService
+INFO  - 2020-01-09 09:19:29.551; org.springframework.web.context.ContextLoader; Root WebApplicationContext initialized in 1572 ms
+INFO  - 2020-01-09 09:19:29.673; org.springframework.web.servlet.FrameworkServlet; Initializing Servlet 'springDispatcherServlet'
+INFO  - 2020-01-09 09:19:29.985; org.hibernate.validator.internal.util.Version; HV000001: Hibernate Validator 6.0.10.Final
+INFO  - 2020-01-09 09:19:30.513; org.springframework.web.servlet.FrameworkServlet; Completed initialization in 840 ms
+WARN  - 2020-01-09 09:19:31.137; org.apache.kafka.clients.NetworkClient; [Consumer clientId=consumer-1, groupId=test-consumer-group] Connection to node -1 could not be established. Broker may not be available.
+WARN  - 2020-01-09 09:19:33.206; org.apache.kafka.clients.NetworkClient; [Consumer clientId=consumer-1, groupId=test-consumer-group] Connection to node -1 could not be established. Broker may not be available.
+WARN  - 2020-01-09 09:19:35.364; org.apache.kafka.clients.NetworkClient; [Consumer clientId=consumer-1, groupId=test-consumer-group] Connection to node -1 could not be established. Broker may not be available.
+WARN  - 2020-01-09 09:19:37.625; org.apache.kafka.clients.NetworkClient; [Consumer clientId=consumer-1, groupId=test-consumer-group] Connection to node -1 could not be established. Broker may not be available.
+WARN  - 2020-01-09 09:19:40.088; org.apache.kafka.clients.NetworkClient; [Consumer clientId=consumer-1, groupId=test-consumer-group] Connection to node -1 could not be established. Broker may not be available.
+WARN  - 2020-01-09 09:19:43.055; org.apache.kafka.clients.NetworkClient; [Consumer clientId=consumer-1, groupId=test-consumer-group] Connection to node -1 could not be established. Broker may not be available.
+WARN  - 2020-01-09 09:19:46.023; org.apache.kafka.clients.NetworkClient; [Consumer clientId=consumer-1, groupId=test-consumer-group] Connection to node -1 could not be established. Broker may not be available.
