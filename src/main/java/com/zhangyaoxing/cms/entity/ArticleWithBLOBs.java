@@ -2,6 +2,9 @@ package com.zhangyaoxing.cms.entity;
 
 import java.io.Serializable;
 
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
+
 public class ArticleWithBLOBs extends Article implements Serializable {
     /**
 	 * @fieldName: serialVersionUID
@@ -9,7 +12,7 @@ public class ArticleWithBLOBs extends Article implements Serializable {
 	 * @Description: TODO
 	 */
 	private static final long serialVersionUID = 3498479290700142284L;
-
+	@Field(index=true,analyzer="ik_smart",store=true,searchAnalyzer="ik_smart",type = FieldType.text)
 	private String content;
 
     private String summary;
