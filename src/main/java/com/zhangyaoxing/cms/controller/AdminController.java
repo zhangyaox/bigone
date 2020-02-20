@@ -23,7 +23,7 @@ import com.zhangyaoxing.cms.service.UserService;
 /**
  */
 @RequestMapping("admin")
-@Controller//这个是为了进入 admin中的  index.jsp页面 而建立
+@Controller//这个是为了进入 admin中的  index.jsp页面 而建立;
 public class AdminController {
 	
 	@Autowired
