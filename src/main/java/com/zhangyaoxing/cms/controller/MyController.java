@@ -9,21 +9,27 @@ import java.util.UUID;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageInfo;
 import com.zhangyaoxing.cms.entity.Article;
 import com.zhangyaoxing.cms.entity.ArticleWithBLOBs;
 import com.zhangyaoxing.cms.entity.Category;
 import com.zhangyaoxing.cms.entity.Channel;
+import com.zhangyaoxing.cms.entity.Collection;
 import com.zhangyaoxing.cms.entity.User;
 import com.zhangyaoxing.cms.service.ArticleService;
 import com.zhangyaoxing.cms.service.ChannelService;
+import com.zhangyaoxing.cms.service.CollectionService;
 import com.zhangyaoxing.cms.service.UserService;
 
 /**
@@ -44,6 +50,10 @@ public class MyController {
 	
 	@Autowired
 	private UserService userService;
+	@Autowired
+	KafkaTemplate<String, String> kafkaTemplate;
+	@Autowired
+	CollectionService collectionService;
 	
 	
 	@RequestMapping(value = {"/","","index"})
@@ -54,6 +64,22 @@ public class MyController {
 	public String publish() {
 		return "my/article/publish";
 	}
+	@RequestMapping("article/collection")//查找收藏
+	public String collection(HttpSession session, @RequestParam(defaultValue = "1")int pageNum,Model m) {//跳到收藏页面
+		User user = (User) session.getAttribute("user");
+		User selectByName = userService.selectByName(user);
+		Integer id = selectByName.getId();//用户id
+		PageInfo<Collection> selectCollections = collectionService.selectCollections(id, pageNum);
+		m.addAttribute("info", selectCollections);
+		return "my/article/collection";
+	}
+	@ResponseBody
+	@RequestMapping("article/delcollection")//删除收藏
+	public Object delcollection(int id) {
+		int delCollection = collectionService.delCollection(id);
+		return delCollection;
+	}
+	
 	@RequestMapping("article/selectById")
 	public String selectById(int id, Model m) {
 		ArticleWithBLOBs selectByPrimaryKey = articleService.selectByPrimaryKey(id);
@@ -119,6 +145,9 @@ public class MyController {
 		articleWithBLOBs.setUpdated(new Date());//修改时间
 		
 		articleWithBLOBs.setHot(0);// 是否 热门文章
+		
+		String jsonString = JSON.toJSONString(articleWithBLOBs);
+		ListenableFuture<SendResult<String, String>> send = kafkaTemplate.send("1708D", jsonString);
 		return articleService.insertSelective(articleWithBLOBs);
 	}
 }

@@ -15,7 +15,7 @@
 	
 	<!-- 加载consumer.xml配置文件 -->
 	<import resource="classpath:consumer.xml"/>
-	
+	<import resource="classpath:producer.xml"/>
 	<!-- 加载es.xml配置文件 -->
 	<import resource="classpath:es.xml"/>
 	

@@ -15,6 +15,7 @@ import com.zhangyaoxing.cms.entity.ArticleWithBLOBs;
 import com.zhangyaoxing.cms.entity.Complain;
 import com.zhangyaoxing.cms.entity.ComplainVO;
 import com.zhangyaoxing.cms.entity.User;
+import com.zhangyaoxing.cms.mapper.ArticleRepository;
 import com.zhangyaoxing.cms.service.ArticleService;
 import com.zhangyaoxing.cms.service.ComplainService;
 import com.zhangyaoxing.cms.service.UserService;
@@ -31,6 +32,8 @@ public class AdminController {
 	private ArticleService articleService;
 	@Autowired
 	private ComplainService complainService;
+	@Autowired
+	ArticleRepository articleRepository;
 	
 	@RequestMapping(value = {"/","","index"})
 	public String index() {
@@ -57,7 +60,7 @@ public class AdminController {
 		System.out.println(user);
 		return userService.updateByPrimaryKeySelective(user)>0;
 	}
-	@RequestMapping("article")
+	@RequestMapping("article")//详情页面
 	public String select(Model m,int id) {
 		ArticleWithBLOBs selectByPrimaryKey = articleService.selectByPrimaryKey(id);
 		m.addAttribute("selectByPrimaryKey", selectByPrimaryKey);
@@ -67,6 +70,8 @@ public class AdminController {
 	@RequestMapping("upda")
 		public String upda(Model m,Article article) {
 			int upd = articleService.upd(article);
+			PageInfo<Article> selectsArticle = articleService.selectsArticle(article, 1, 6);
+			articleRepository.saveAll(selectsArticle.getList());
 			return "/admin/article/articles";
 	}
 	
@@ -82,4 +87,6 @@ public class AdminController {
 	public boolean update(ArticleWithBLOBs article) {
 		return articleService.updateByPrimaryKeySelective(article)> 0;
 	}
+	
+	
 }

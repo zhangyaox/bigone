@@ -27,8 +27,8 @@
 				<div class="list-group">
 					<a href="#" class="list-group-item list-group-item-action active" data="/my/article/articles">
 						我的文章</a> <a href="#"
-						class="list-group-item list-group-item-action" data="/my/article/publish">发布文章</a> <a href="#"
-						class="list-group-item list-group-item-action">我的收藏</a>
+						class="list-group-item list-group-item-action" data="/my/article/publish">发布文章</a> 
+						<a href="#" class="list-group-item list-group-item-action" data="/my/article/collection">我的收藏</a>
 					<a href="#" class="list-group-item list-group-item-action">用户设置</a> <a href="#"
 						class="list-group-item list-group-item-action disabled"
 						tabindex="-1" aria-disabled="true">发布图片</a>

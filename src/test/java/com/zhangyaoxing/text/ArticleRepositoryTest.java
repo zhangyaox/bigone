@@ -9,6 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.zhangyaoxing.cms.entity.Article;
+import com.zhangyaoxing.cms.entity.ArticleWithBLOBs;
 import com.zhangyaoxing.cms.mapper.ArticleMapper;
 import com.zhangyaoxing.cms.mapper.ArticleRepository;
 
@@ -24,9 +25,13 @@ public class ArticleRepositoryTest {
 	public void text() {
 		Article article = new Article();
 		article.setStatus("1");
+		
+//		 List<ArticleWithBLOBs> selectArticleWithBLOBs =
+//		 articleMapper.selectArticleWithBLOBs(article);
+//		 System.out.println(selectArticleWithBLOBs);
+//		  articleRepository.saveAll(selectArticleWithBLOBs);
 		List<Article> selectsArticle = articleMapper.selectsArticle(article);
-		System.out.println(selectsArticle);
-		Iterable<Article> saveAll = articleRepository.saveAll(selectsArticle);
+		articleRepository.saveAll(selectsArticle);
 	}
 	@Test
 	public void findByTitle() {

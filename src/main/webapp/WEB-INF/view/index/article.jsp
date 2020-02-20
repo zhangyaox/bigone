@@ -10,6 +10,7 @@
 		<div class="container">
 		<h1 align="center">${selectByPrimaryKey.title}</h1>
 		<span><a href="/complain?id=${selectByPrimaryKey.id}">举报</a></span>
+		<span><a href="addcollection?id=${selectByPrimaryKey.id}">添加收藏</a></span>
 		<h3>${selectByPrimaryKey.user.username}<fmt:formatDate value="${selectByPrimaryKey.created}" pattern="yyyy-MM-dd HH:mm:ss"/></h3>
 		${selectByPrimaryKey.content}
 		

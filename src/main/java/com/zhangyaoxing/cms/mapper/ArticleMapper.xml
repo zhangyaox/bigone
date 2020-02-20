@@ -34,6 +34,15 @@
     content, summary
   </sql>
   
+  
+  
+  <!-- 阅读次数加1 -->
+  <update id="addOne">
+  
+  update cms_article set complain_num=complain_num +1 where id=#{id}
+
+  </update>
+  
   <!-- 举报次数加1 -->
   <update id="updateComplainnum">
   
@@ -46,6 +55,31 @@
   </update>
   
   <select id="selectsArticle" resultMap="BaseResultMap">
+  		SELECT * FROM cms_article
+  		<where>
+  			<if test="null!=title and title!=''">
+  				title like '%${title}%'
+  			</if>
+  			<if test="null!=status and status!=''">
+  				and status in(${status})
+  			</if>
+  			<if test="null!=userId">
+  				and user_id=${userId}
+  			</if>
+  			<if test="null!=categoryId">
+  				and category_id=${categoryId}
+  			</if>
+  			<if test="null!=channelId">
+  				and channel_id=#{channelId}
+  			</if>
+  			<if test="null!=hot and hot!=''">
+  				and hot=#{hot}
+  			</if>
+  		</where>
+  		order by updated desc
+  </select>
+  <!--  -->
+  <select id="selectArticleWithBLOBs" resultMap="BaseResultMap">
   		SELECT * FROM cms_article
   		<where>
   			<if test="null!=title and title!=''">

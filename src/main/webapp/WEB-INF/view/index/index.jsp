@@ -50,7 +50,24 @@ a:visited {
 					</c:forEach>
 				</ul>
 			</div>
+
+			
+
 			<div class="col-md-7" style="">
+			
+				<form action="selectEs" method="get">${date }
+					<div class="input-group mb-3">
+						<input type="text" name="title" class="form-control"
+							placeholder="输入查找内容"
+							aria-label="输入查找内容"
+							aria-describedby="button-addon2">
+						<div class="input-group-append">
+							<button class="btn btn-outline-secondary"
+								id="button-addon2">查找</button>
+						</div>
+					</div>
+				</form>
+			
 				<!-- 创建一个div 放 分类    中间的-->
 				<!-- 轮播图 -->
 				<div id="carouselExampleCaptions" class="carousel slide"
@@ -64,7 +81,7 @@ a:visited {
 
 					<div class="carousel-inner">
 						<c:forEach items="${selects}" var="l" varStatus="i">
-
+							
 							<div class="carousel-item ${i.index==0?"active":""}">
 								<img src="/pic/${l.url}" class="d-block w-100" alt="..." style="height: 300px;width: 400px">
 								<div class="carousel-caption d-none d-md-block">

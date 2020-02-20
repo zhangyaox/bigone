@@ -6,7 +6,7 @@ import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
 public class ArticleWithBLOBs extends Article implements Serializable {
-    /**
+    /**43
 	 * @fieldName: serialVersionUID
 	 * @fieldType: long
 	 * @Description: TODO

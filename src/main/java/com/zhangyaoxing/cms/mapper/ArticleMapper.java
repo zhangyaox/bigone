@@ -7,9 +7,13 @@ import com.zhangyaoxing.cms.entity.ArticleWithBLOBs;
 
 public interface ArticleMapper {
 	
+	int addOne(int id);//添加阅读次数
+	
 	int upd(Article article);
 	
 	List<Article> selectsArticle(Article article);
+	
+	List<ArticleWithBLOBs> selectArticleWithBLOBs(Article article);
 	
 	int  update(Article article);
 	

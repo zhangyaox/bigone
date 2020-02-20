@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhangyaoxing.cms.mapper.CollectionMapper">
+	<select id="selectCollections" resultType="com.zhangyaoxing.cms.entity.Collection">
+		SELECT * FROM cms_collection WHERE user_id=#{id} ORDER BY created DESC 
+	</select>
+	
+	<insert id="addCollection">
+		INSERT INTO cms_collection (text,url,user_id,created) VALUES (#{text},#{url},#{user_id},#{created})
+	</insert>
+	
+	<delete id="delCollection">
+		DELETE FROM cms_collection WHERE id=#{id}
+	</delete>
+</mapper>

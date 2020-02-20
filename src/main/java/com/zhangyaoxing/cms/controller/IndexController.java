@@ -4,11 +4,16 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,12 +31,14 @@ import com.zhangyaoxing.cms.entity.Channel;
 import com.zhangyaoxing.cms.entity.Complain;
 import com.zhangyaoxing.cms.entity.Slide;
 import com.zhangyaoxing.cms.entity.User;
+import com.zhangyaoxing.cms.mapper.ArticleMapper;
 import com.zhangyaoxing.cms.service.ArticleService;
 import com.zhangyaoxing.cms.service.ChannelService;
 import com.zhangyaoxing.cms.service.ComplainService;
 import com.zhangyaoxing.cms.service.SlideService;
 import com.zhangyaoxing.cms.service.UserService;
 import com.zhangyaoxing.cms.util.CMSExctption;
+import com.zhangyaoxing.cms.util.HLUtils;
 
 
 @Controller
@@ -46,6 +53,14 @@ public class IndexController {
 	private ComplainService complainService;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	RedisTemplate redisTemplate;
+	@Autowired
+	KafkaTemplate<String, String> kafkaTemplate;
+	@Autowired
+	ArticleMapper articleMapper;
+	@Autowired
+	ElasticsearchTemplate elasticsearchTemplate;
 	
 	@RequestMapping(value = {"","/","index"})
 	public String Index(Model m, Article article, @RequestParam(defaultValue = "1")int page) {
@@ -58,8 +73,28 @@ public class IndexController {
 			//创建一个新的 文章 类对象
 			Article article2 = new Article();
 			article2.setHot(1);
-			PageInfo<Article> info = articleService.selectsArticle(article2, page, 3);
+			PageInfo<Article> info = articleService.selectsArticle(article2, page, 3);//热门文章
+			//存入redis
+			List<ArticleWithBLOBs> selectArticleWithBLOBs = articleMapper.selectArticleWithBLOBs(article2);
+			System.out.println("==========================="+selectArticleWithBLOBs);
+			List<Article> list = info.getList();
+			redisTemplate.opsForList().leftPush("myhot", selectArticleWithBLOBs);
+			redisTemplate.expireAt("myhot", new Date(1000000000));
+			List range = redisTemplate.opsForList().range("myhot", 0, -1);
+			System.out.println("热门"+list);
+			info.setList(range);
 			m.addAttribute("info", info);
+//			List<Article> range = (List<Article>) redisTemplate.opsForHash().get("myhot", "list");
+//			if(null!=range&&range.size()>0) {
+////				PageInfo<Article> pageInfo = new PageInfo<Article>();
+////				pageInfo.setList((List<Article>) range);
+//				m.addAttribute("info", range);
+//			}else {
+//				PageInfo<Article> info = articleService.selectsArticle(article2, page, 3);
+//				//存入redis
+//				redisTemplate.opsForHash().putAll("myhot", (Map) info);
+//				m.addAttribute("info", info);
+//			}
 		}
 		
 		//在最开始传递 Article 对象 用来 取当前的对象的值
@@ -92,10 +127,24 @@ public class IndexController {
 		m.addAttribute("lastinfo", lastinfo);
 		return "index/index";
 	}
-	@GetMapping("article")
-	public String select(Model m,int id) {
+	@GetMapping("article")//详情
+	public String select(Model m,int id, HttpSession session) {
 		ArticleWithBLOBs selectByPrimaryKey = articleService.selectByPrimaryKey(id);
 		m.addAttribute("selectByPrimaryKey", selectByPrimaryKey);
+		/**
+		 * kafkaTemplate.send("1708D", id+"");
+			System.err.println("22");
+		 */
+		User user = (User) session.getAttribute("user");//获取用户id
+//		Integer id2 = user.getId();
+		String id2 =157+"";
+		Object object = redisTemplate.opsForValue().get(id2);
+		if(null==object||object!="") {//这个用户没有 阅读    +1    存储
+			articleMapper.addOne(id);
+			redisTemplate.opsForValue().set(id2+"", "");
+			redisTemplate.expireAt(id2+"", new Date(5000));
+		}
+		System.err.println("==========="+object);
 		return "/index/article";
 	}
 	
@@ -146,5 +195,15 @@ public class IndexController {
 	
 	    
 	}
+	@RequestMapping("ppp")
+	public String pp(String name) {
+		return "js";
+	}
 	
+	@RequestMapping("ps")
+	public String ps(String name,Model m) {
+		PageInfo<Article> findByHighLight = (PageInfo<Article>) HLUtils.findByHighLight(elasticsearchTemplate, Article.class, 1, 3, new String[] {"title"}, "id", name);
+		m.addAttribute("file", findByHighLight);
+		return "jp";
+	}
 }
